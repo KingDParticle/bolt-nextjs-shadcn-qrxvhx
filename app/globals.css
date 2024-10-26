@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .cosmic-room {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .cosmic-room-inner {
+    transform-style: preserve-3d;
+    animation: roomSpin 60s linear infinite;
+  }
+
+  .cosmic-wall {
+    pointer-events: none;
+    transform-style: preserve-3d;
+    background: linear-gradient(
+      45deg,
+      rgba(168, 85, 247, 0.05),
+      rgba(236, 72, 153, 0.05)
+    );
+    backdrop-filter: blur(8px);
+  }
+
+  .wall-front {
+    transform: translateZ(500px);
+  }
+
+  .wall-back {
+    transform: translateZ(-500px);
+  }
+
+  .wall-left {
+    transform: rotateY(90deg) translateZ(500px);
+  }
+
+  .wall-right {
+    transform: rotateY(-90deg) translateZ(500px);
+  }
+
+  .wall-top {
+    transform: rotateX(-90deg) translateZ(500px);
+  }
+
+  .wall-bottom {
+    transform: rotateX(90deg) translateZ(500px);
+  }
+
+  .cosmic-visualizer {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .energy-field {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(45deg, rgba(168, 85, 247, 0.1) 0%, transparent 70%),
+      linear-gradient(-45deg, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+
+  @keyframes roomSpin {
+    0% {
+      transform: rotateY(0deg) rotateX(10deg);
+    }
+    100% {
+      transform: rotateY(360deg) rotateX(10deg);
+    }
+  }
+
+  .star-field {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: starFloat 6s infinite linear;
+  }
+
+  @keyframes starFloat {
+    0% {
+      transform: translateZ(0px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateZ(1000px);
+      opacity: 0;
+    }
+  }
+
+  .prism-effect {
+    background: linear-gradient(
+      45deg,
+      rgba(255, 0, 0, 0.1),
+      rgba(255, 165, 0, 0.1),
+      rgba(255, 255, 0, 0.1),
+      rgba(0, 255, 0, 0.1),
+      rgba(0, 0, 255, 0.1),
+      rgba(238, 130, 238, 0.1)
+    );
+    background-size: 200% 200%;
+    animation: prism-flow 10s linear infinite;
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes prism-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
